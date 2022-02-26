@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://gus.png" type="Texture" id=1]
+[ext_resource path="res://Control.gd" type="Script" id=2]
+[ext_resource path="res://PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="amogus" type="Control" parent="."]
+anchor_right = 0.5
+anchor_bottom = 1.0
+
+[node name="Panel" type="Panel" parent="amogus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="amogus/Panel"]
+anchor_right = 1.0
+anchor_bottom = 0.1
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="TextureRect" type="TextureRect" parent="amogus/Panel"]
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.9
+texture = ExtResource( 1 )
+expand = true
+
+[node name="Button" type="Button" parent="amogus/Panel/TextureRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_default_cursor_shape = 3
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = SubResource( 4 )
+custom_styles/focus = SubResource( 5 )
+custom_styles/disabled = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 0.25
+disabled = true
+text = "заточка ножа:100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="amogus/Panel/TextureRect/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_knife_sharp"]
