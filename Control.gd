@@ -1,8 +1,7 @@
 extends Control
 
-var coins:float = 0
-
-
+var coins:float = 1500
+var knife_impr = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,16 +10,18 @@ func _ready():
 
 
 func _process(delta):
-	if coins>=100:
+	if coins>=30+knife_impr*70 and knife_impr < 5:
 		$Control/Button.disabled=false
 	else:
 		$Control/Button.disabled=true
 
 
 func _on_Button_pressed():
-	coins+=10
+	coins+=knife_impr
 	$amogus/Panel/Label.text = str(coins)
 
 func _knife_sharp():
-	coins-=100
-	
+	coins -= 30+knife_impr*70
+	knife_impr += 1
+
+		
