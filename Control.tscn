@@ -1,8 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://gus.png" type="Texture" id=1]
+[ext_resource path="res://textures/wonder-day-among-us-21.png" type="Texture" id=1]
 [ext_resource path="res://Control.gd" type="Script" id=2]
 [ext_resource path="res://PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://buttonfont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://buttonnorm.tres" type="StyleBox" id=5]
+[ext_resource path="res://buttondis.tres" type="StyleBox" id=6]
+[ext_resource path="res://buttonpres.tres" type="StyleBox" id=7]
+[ext_resource path="res://button.tres" type="StyleBox" id=8]
+[ext_resource path="res://textures/child.png" type="Texture" id=9]
+[ext_resource path="res://textures/child1.png" type="Texture" id=10]
+[ext_resource path="res://textures/thicc.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 24
@@ -21,6 +29,12 @@ default_font = SubResource( 1 )
 
 [sub_resource type="StyleBoxEmpty" id=7]
 
+[sub_resource type="DynamicFont" id=8]
+size = 20
+outline_size = 4
+outline_color = Color( 0.207843, 0.207843, 0.207843, 1 )
+font_data = ExtResource( 3 )
+
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -31,12 +45,17 @@ __meta__ = {
 }
 
 [node name="amogus" type="Control" parent="."]
-anchor_right = 0.5
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
 anchor_bottom = 1.0
 
 [node name="Panel" type="Panel" parent="amogus"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="amogus/Panel"]
 anchor_right = 1.0
@@ -45,18 +64,23 @@ align = 1
 valign = 1
 autowrap = true
 clip_text = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="amogus/Panel"]
-anchor_left = 0.2
+anchor_left = 0.1
 anchor_top = 0.2
-anchor_right = 0.8
+anchor_right = 0.9
 anchor_bottom = 0.9
 texture = ExtResource( 1 )
 expand = true
 
-[node name="Button" type="Button" parent="amogus/Panel/TextureRect"]
+[node name="Buttonam" type="Button" parent="amogus/Panel/TextureRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 1.25992
+margin_right = 1.25992
 mouse_default_cursor_shape = 3
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
@@ -67,22 +91,134 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect2" type="TextureRect" parent="amogus/Panel"]
+visible = false
+anchor_top = 0.7
+anchor_right = 0.4
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="amogus/Panel"]
+visible = false
+anchor_left = 0.6
+anchor_top = 0.6
+anchor_right = 1.0
+anchor_bottom = 0.9
+texture = ExtResource( 9 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect4" type="TextureRect" parent="amogus/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="amogus/Panel/TextureRect4"]
+one_shot = true
+
 [node name="Control" type="Control" parent="."]
-anchor_left = 0.5
+anchor_left = 0.7
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Control"]
+[node name="Buttonsh" type="Button" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 0.25
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 5 )
 disabled = true
-text = "заточка ножа:100"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="amogus/Panel/TextureRect/Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Control/Button" to="." method="_knife_sharp"]
+[node name="Label" type="Label" parent="Control/Buttonsh"]
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.8
+custom_fonts/font = ExtResource( 4 )
+text = "заточка ножа: 100"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttonch" type="Button" parent="Control"]
+anchor_top = 0.26
+anchor_right = 1.0
+anchor_bottom = 0.51
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 5 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Control/Buttonch"]
+
+[node name="Label" type="Label" parent="Control/Buttonch"]
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.75
+custom_fonts/font = SubResource( 8 )
+text = "мини-амогус: 250"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+
+[node name="Buttonch2" type="Button" parent="Control"]
+anchor_top = 0.52
+anchor_right = 1.0
+anchor_bottom = 0.77
+custom_styles/hover = ExtResource( 8 )
+custom_styles/pressed = ExtResource( 7 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 5 )
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="Control/Buttonch2"]
+
+[node name="Label" type="Label" parent="Control/Buttonch2"]
+anchor_left = 0.1
+anchor_top = 0.25
+anchor_right = 0.9
+anchor_bottom = 0.75
+custom_fonts/font = SubResource( 8 )
+text = "маленький предатель: 500"
+align = 1
+valign = 1
+autowrap = true
+uppercase = true
+
+[connection signal="pressed" from="amogus/Panel/TextureRect/Buttonam" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="amogus/Panel/TextureRect4/Timer" to="." method="_sus"]
+[connection signal="pressed" from="Control/Buttonsh" to="." method="_knife_sharp"]
+[connection signal="pressed" from="Control/Buttonch" to="." method="_miniam1"]
+[connection signal="timeout" from="Control/Buttonch/Timer" to="." method="_on_Timer1_timeout"]
+[connection signal="pressed" from="Control/Buttonch2" to="." method="_miniam2"]
+[connection signal="timeout" from="Control/Buttonch2/Timer" to="." method="_on_Timer2_timeout"]
