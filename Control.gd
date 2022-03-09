@@ -1,9 +1,9 @@
 extends Control
 
-var coins:float = 2000
+export var coins:float = 2000
 
 var knife_impr = 1
-var sharp_cost = 100
+export var sharp_cost = 100
 
 var miniam1:bool = false
 var miniam1_time = 1.5
@@ -12,14 +12,14 @@ var miniam2:bool = false
 var miniam2_time = 1.3
 
 var sus = 0.3
-var click_sus:float = 0
+var click_sus:float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func _process(delta):
-	$amogus/Panel/Label.text = str(coins)
+	$Label.text = str(coins)
 	$Control/Buttonsh/Label.text = "заточка ножа: "+str(sharp_cost)
 	
 	if coins>=sharp_cost and knife_impr <= 5:
@@ -41,15 +41,15 @@ func _process(delta):
 		$Control/Buttonch2.disabled=true
 	
 	if fmod(click_sus,35) == 0:
-		$amogus/Panel/TextureRect.visible = false
-		$amogus/Panel/TextureRect4.visible = true
-		$amogus/Panel/TextureRect4/Timer.start(sus)
+		$amogus/TextureRect.visible = false
+		$amogus/TextureRect4.visible = true
+		$amogus/TextureRect4/Timer.start(sus)
 		click_sus += 1
 
 func _sus():
-	$amogus/Panel/TextureRect.visible = true
-	$amogus/Panel/TextureRect4.visible = false
-	$amogus/Panel/TextureRect4/Timer.stop()
+	$amogus/TextureRect.visible = true
+	$amogus/TextureRect4.visible = false
+	$amogus/TextureRect4/Timer.stop()
 	
 func _knife_sharp():
 	coins -= sharp_cost
@@ -64,7 +64,7 @@ func _miniam1():
 	miniam1 = true
 	coins -= 250
 	$Control/Buttonch/Timer.start(miniam1_time)
-	$amogus/Panel/TextureRect2.visible = true
+	$amogus/TextureRect2.visible = true
 
 func _on_Timer1_timeout():
 	coins += 1
@@ -74,7 +74,7 @@ func _miniam2():
 	miniam2 = true
 	coins -= 500
 	$Control/Buttonch2/Timer.start(miniam2_time)
-	$amogus/Panel/TextureRect3.visible = true
+	$amogus/TextureRect3.visible = true
 
 func _on_Timer2_timeout():
 	coins += 2
